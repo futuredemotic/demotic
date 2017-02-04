@@ -1,0 +1,19 @@
+return {
+        active = true,
+        on = {
+                ['timer'] = 'every minute'
+        },
+        execute = function(domoticz)
+                local watt_1 = domoticz.devices['kWh Presa comandata'].WActual
+                local watth_1 = domoticz.devices['kWh Presa comandata'].WhTotal
+	        local watt_2 = domoticz.devices['xxxxxxx'].WActual
+                local watth_2 = domoticz.devices['xxxxxx'].WhTotal
+
+	        local totW = watt_1 + watt_2
+	        local totWh = watth_1 + watth_2
+	  
+                -- update the dummy sensor
+                domoticz.devices['Consumo luci'].updateElectricity(totW,totWh)
+
+        end
+}
